@@ -7,7 +7,7 @@ import com.loopj.android.http.RequestParams;
 
 public class ConnectionApi {
     private AsyncHttpClient client = new AsyncHttpClient();
-    private final String BASE_URL= "ec2-52-23-194-178.compute-1.amazonaws.com:9000";
+    private final String BASE_URL= "http://ec2-52-23-194-178.compute-1.amazonaws.com:9000";
     private final String VERSION = "/api/v1";
     private final String LOGIN = "/login";
     private final String USERS = "/r/registro";

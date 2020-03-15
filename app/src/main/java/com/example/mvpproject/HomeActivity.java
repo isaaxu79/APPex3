@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        findViewById(R.id.init).setBackgroundColor(Color.parseColor("#00695C"));
         presenter = new HomePresenterImplement(this,new HomeInteractorImplement());
         String token = getIntent().getStringExtra("token");
         Boolean superUser = Boolean.valueOf(getIntent().getStringExtra("super"));
@@ -50,15 +53,19 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
 
     @Override
     public void showTable(ArrayList<String[]> rows, boolean user) {
+        TextView d = findViewById(R.id.use);
+
         if(user){
-            String[] header ={"id","name","lastname","age",""};
+            d.setText("Administrador");
+            String[] header ={"  id  ","  name  ","  lastname  ","  age  ",""};
             headers = null;
             headers =header;
             rowss = rows;
             createHeaders();
             createDataTables();
         }else{
-            String[] header ={"id","Nombre","Periodo","Codigo",""};
+            d.setText("Comun");
+            String[] header ={"  id  ","  Nombre  ","  Periodo  ","  Codigo  ",""};
             headers = null;
             headers = header;
             rowss = rows;
@@ -111,7 +118,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
                     x.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            AlertDialog.Builder alerta = new AlertDialog.Builder(getApplicationContext());
+                            AlertDialog.Builder alerta = new AlertDialog.Builder(HomeActivity.this);
                             alerta.setMessage("Nombre: "+name+"\nApellido: "+last+"\nEdad: "+age);
                             alerta.setCancelable(false);
                             alerta.setPositiveButton("Done", new DialogInterface.OnClickListener() {

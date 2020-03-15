@@ -3,8 +3,10 @@ package com.example.mvpproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -32,7 +34,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         progressBar = findViewById(R.id.progressBar);
         usuario = findViewById(R.id.username);
         contrasena = findViewById(R.id.password);
-
+        findViewById(R.id.logIn).setBackgroundColor(Color.parseColor("#00695C"));
+        Button x = findViewById(R.id.logIn);
+        x.setTextColor(Color.parseColor("#FFFFFF"));
         findViewById(R.id.logIn).setOnClickListener(this);
 
         presenter = new LoginPresenterImplement(this, new LoginInteractorImplement());
